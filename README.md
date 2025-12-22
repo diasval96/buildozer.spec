@@ -97,12 +97,36 @@ cython = True
    ```bash
    buildozer init
    ```
-2. Substitua o arquivo `buildozer.spec` pelo modelo otimizado.  
-3. Compile o APK:
+2. Substitua o arquivo `buildozer.spec` pelo modelo otimizado.
+   ```bash
+   [app]
+   title = MeuApp
+   package.name = meuapp
+   package.domain = org.dias.accessx
+   version = 0.1
+   source.dir = .
+   requirements = python3,kivy,kivymd,flask,plyer,cython
+   android.permissions = INTERNET,WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE,CAMERA,ACCESS_FINE_LOCATION,VIBRATE,RECORD_AUDIO
+   orientation = all
+   icon.filename = %(source.dir)s/assets/icon.png
+   presplash.filename = %(source.dir)s/assets/splash.png
+   android.arch = arm64-v8a
+   android.api = 33
+   android.minapi = 24
+   android.sdk = 24
+   android.ndk = 23b
+   android.build_tools = 33.0.2
+   log_level = 2
+   p4a.branch = master
+   p4a.bootstrap = sdl2
+   cython = True
+   
+    ``` 
+5. Compile o APK:
    ```bash
    buildozer -v android debug
    ```
-4. Instale no celular:
+6. Instale no celular:
    ```bash
    pm install bin/*.apk
    ```
