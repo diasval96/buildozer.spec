@@ -98,8 +98,8 @@ cython = True
    buildozer init
    ```
 2. Substitua o arquivo `buildozer.spec` pelo modelo otimizado.
-   ```bash
-   [app]
+   ```ini
+      [app]
    title = MeuApp
    package.name = meuapp
    package.domain = org.dias.accessx
@@ -120,13 +120,12 @@ cython = True
    p4a.branch = master
    p4a.bootstrap = sdl2
    cython = True
-   
     ``` 
-5. Compile o APK:
+3. Compile o APK:
    ```bash
    buildozer -v android debug
    ```
-6. Instale no celular:
+4. Instale no celular:
    ```bash
    pm install bin/*.apk
    ```
