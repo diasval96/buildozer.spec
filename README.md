@@ -99,28 +99,69 @@ cython = True
    ```
 2. Substitua o arquivo `buildozer.spec` pelo modelo otimizado.
    ```ini
-      [app]
+   [app]
+   # Nome do aplicativo que aparece no Android
    title = MeuApp
+   
+   # Identificador curto do pacote (sem espaços, único)
    package.name = meuapp
+   
+   # Domínio reverso para garantir unicidade (substitua pelo seu)
    package.domain = org.dias.accessx
+   
+   # Versão do app (altere conforme evolui)
    version = 0.1
+   
+   # Diretório onde está o código principal (main.py)
    source.dir = .
+   
+   # Dependências Python que serão incluídas no APK
+   # Ajuste conforme seu projeto (remova Flask se não usar)
    requirements = python3,kivy,kivymd,flask,plyer,cython
+   
+   # Permissões que o app vai pedir no Android
+   # Substitua conforme necessidade
    android.permissions = INTERNET,WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE,CAMERA,ACCESS_FINE_LOCATION,VIBRATE,RECORD_AUDIO
+   
+   # Orientação da tela (portrait, landscape ou all)
    orientation = all
+   
+   # Caminho para ícone e tela de abertura (certifique-se que os arquivos existem)
    icon.filename = %(source.dir)s/assets/icon.png
    presplash.filename = %(source.dir)s/assets/splash.png
+   
+   # Arquitetura alvo (arm64-v8a = celulares modernos)
    android.arch = arm64-v8a
+   
+   # API alvo (Android 13 = 33)
    android.api = 33
+   
+   # API mínima suportada (Android 7.0 = 24)
    android.minapi = 24
+   
+   # Versões fixas de SDK, NDK e Build Tools
+   # Se não tiver instalados, o Buildozer baixa automaticamente
    android.sdk = 24
    android.ndk = 23b
    android.build_tools = 33.0.2
+   
+   # Nível de log (1 = pouco, 2 = moderado, 3 = detalhado)
    log_level = 2
+   
+   # Configuração interna do Python-for-Android
    p4a.branch = master
    p4a.bootstrap = sdl2
+   
+   # Ativa otimização com Cython
    cython = True
-    ``` 
+   ```
+
+---
+### 📌 Observações importantes
+* Esse arquivo **não é fixo**: você adapta para cada app (nome, domínio, dependências, permissões, ícone).  
+* O **SDK/NDK**: se não estiverem instalados, o Buildozer baixa automaticamente na primeira compilação.  
+* Se quiser deixar o Buildozer sempre baixar a versão mais recente, pode **remover** os valores de `android.sdk`, `android.ndk` e `android.build_tools`. 
+---
 3. Compile o APK:
    ```bash
    buildozer -v android debug
